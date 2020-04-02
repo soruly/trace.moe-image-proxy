@@ -1,0 +1,29 @@
+{
+  "name": "trace.moe-image-proxy",
+  "version": "1.0.0",
+  "description": "Image proxy for trace.moe",
+  "main": "image-proxy.ts",
+  "scripts": {
+    "format": "prettier --write \"**/*.ts\"",
+    "lint": "prettier --check \"**/*.ts\"",
+    "test": "prettier --check \"**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soruly/trace.moe-image-proxy.git"
+  },
+  "author": "soruly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soruly/trace.moe-image-proxy/issues"
+  },
+  "homepage": "https://github.com/soruly/trace.moe-image-proxy#readme",
+  "devDependencies": {
+    "@now/node": "^1.5.0",
+    "prettier": "^2.0.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
