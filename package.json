@@ -21,7 +21,7 @@
   "devDependencies": {
     "@now/node": "^1.6.1",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "node-fetch": "^2.6.0"
