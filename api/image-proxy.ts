@@ -26,11 +26,28 @@ export default async (request: NowRequest, response: NowResponse) => {
     return response.status(res.status).send(await res.text());
   }
 
-  if (!["image", "video"].includes(res.headers.get("Content-Type").split("/")[0].toLowerCase())) {
-    return response.status(400).send("Error: Content-Type is not image or video");
+  if (["image", "video"].includes(res.headers.get("Content-Type").split("/")[0].toLowerCase())) {
+    response.setHeader("Content-Type", res.headers.get("Content-Type"));
+  } else if (res.headers.get("Content-Type").toLowerCase() === "application/octet-stream") {
+    const match = imageURL.match(/\.(\w{3,4})($|\?)/);
+    if (!match) return response.status(400).send("Error: Cannot determine Content-Type");
+    const contentType = {
+      mp4: "video/mp4",
+      mpeg: "video/mpeg",
+      webm: "video/webm",
+      mkv: "video/x-matroska",
+      bmp: "image/bmp",
+      gif: "image/gif",
+      jpg: "image/jpeg",
+      jpeg: "image/jpeg",
+      png: "image/png",
+      webp: "image/webp",
+    }[match[1]];
+    if (!contentType) return response.status(400).send("Error: Unknown Content-Type");
+    response.setHeader("Content-Type", contentType);
+  } else {
+    return response.status(400).send("Error: Unsupported Content-Type");
   }
-
-  response.setHeader("Content-Type", res.headers.get("Content-Type"));
 
   return response.status(200).send(await res.buffer());
 };
