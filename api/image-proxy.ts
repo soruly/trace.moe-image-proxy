@@ -26,8 +26,8 @@ export default async (request: NowRequest, response: NowResponse) => {
     return response.status(res.status).send(await res.text());
   }
 
-  if (res.headers.get("Content-Type").split("/")[0].toLowerCase() !== "image") {
-    return response.status(400).send("Error: Content-Type is not image");
+  if (!["image", "video"].includes(res.headers.get("Content-Type").split("/")[0].toLowerCase())) {
+    return response.status(400).send("Error: Content-Type is not image or video");
   }
 
   response.setHeader("Content-Type", res.headers.get("Content-Type"));
