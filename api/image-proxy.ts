@@ -29,7 +29,7 @@ export default async (request: NowRequest, response: NowResponse) => {
 
   if (["image", "video"].includes(res.headers.get("Content-Type").split("/")[0].toLowerCase())) {
     response.setHeader("Content-Type", res.headers.get("Content-Type"));
-    response.setHeader("Cache-Control", "s-maxage=86400");
+    response.setHeader("Cache-Control", "max-age=3600, s-maxage=86400, stale-while-revalidate");
   } else if (res.headers.get("Content-Type").toLowerCase() === "application/octet-stream") {
     const match = imageURL.match(/\.(\w{3,4})($|\?)/);
     if (!match) return response.status(400).send("Error: Cannot determine Content-Type");
@@ -47,7 +47,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     }[match[1]];
     if (!contentType) return response.status(400).send("Error: Unknown Content-Type");
     response.setHeader("Content-Type", contentType);
-    response.setHeader("Cache-Control", "s-maxage=86400");
+    response.setHeader("Cache-Control", "max-age=3600, s-maxage=86400, stale-while-revalidate");
   } else {
     return response.status(400).send("Error: Unsupported Content-Type");
   }
