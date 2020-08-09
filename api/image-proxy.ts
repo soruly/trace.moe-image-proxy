@@ -2,6 +2,8 @@ import { NowRequest, NowResponse } from "@now/node";
 import fetch from "node-fetch";
 
 export default async (request: NowRequest, response: NowResponse) => {
+  res.setHeader("Access-Control-Allow-Origin", "trace.moe");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
   const { url } = request.query;
   const imageURL = Array.isArray(url) ? url[0] : url;
   if (!imageURL) {
