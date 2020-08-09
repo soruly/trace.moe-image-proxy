@@ -2,7 +2,7 @@ import { NowRequest, NowResponse } from "@now/node";
 import fetch from "node-fetch";
 
 export default async (request: NowRequest, response: NowResponse) => {
-  response.setHeader("Access-Control-Allow-Origin", "trace.moe");
+  response.setHeader("Access-Control-Allow-Origin", "https://trace.moe");
   const { url } = request.query;
   const imageURL = Array.isArray(url) ? url[0] : url;
   if (!imageURL) {
