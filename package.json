@@ -20,7 +20,7 @@
   "homepage": "https://github.com/soruly/trace.moe-image-proxy#readme",
   "devDependencies": {
     "@now/node": "^1.8.0",
-    "prettier": "^2.1.0",
+    "prettier": "^2.1.1",
     "typescript": "^4.0.2"
   },
   "dependencies": {
